@@ -4,23 +4,24 @@ import './App.css'
 import FormPage from './Form'
 import { Routes, Route, Link } from 'react-router-dom';
 import TableView from './Table'
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
 
 interface IFoodItem {
   id: number;
   name: string;
+  fav: string;
 }
 
 const App = () => {
   const [foodItems, setFoodItems] = useState<IFoodItem[]>([]);
 
-  const addFoodItem = (itemName: string) => {
-    const newItem: IFoodItem = { id: foodItems.length + 1, name: itemName }
+  const addFoodItem = (itemName: string, fav: string) => {
+    const newItem: IFoodItem = { id: foodItems.length + 1, name: itemName, fav}
     setFoodItems([...foodItems, newItem])
   }
 
-  const editFoodItem = (id: number, newName: string) => {
-    const updatedItems = foodItems.map(item => item.id === id ? { ...item, name: newName } : item);
+  const editFoodItem = (id: number, newName: string, fav: string) => {
+    const updatedItems = foodItems.map(item => item.id === id ? { ...item, name: newName, fav } : item);
     setFoodItems(updatedItems);
   }
 

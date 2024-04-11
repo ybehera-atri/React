@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 interface IFoodItem {
     id: number;
     name: string;
+    fav: string;
 }
 
 interface TableViewProps {
@@ -39,12 +40,8 @@ const TableView = ({ items, onDelete }: { items: IFoodItem[], onDelete: (id: num
                 accessor: 'name',
             },
             {
-                Header: 'Favorites',
-                Cell: ({ row }) => (
-                    <div>
-                        <input type="checkbox" value={row.original.id}/>
-                    </div>
-                )
+                Header: 'Favorite',
+                accessor: 'fav',
             },
             {
                 Header: 'Actions',
@@ -54,6 +51,7 @@ const TableView = ({ items, onDelete }: { items: IFoodItem[], onDelete: (id: num
                     </div>
                 )
             },
+           
         ],
         [navigate, onDelete, items]
     );
