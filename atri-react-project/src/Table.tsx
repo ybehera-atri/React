@@ -3,6 +3,7 @@
 import React from 'react'
 import { useTable, Column } from 'react-table';
 import { Link, useNavigate } from 'react-router-dom';
+import { Table, Button, Container } from 'react-bootstrap'
 
 interface IFoodItem {
     id: number;
@@ -58,45 +59,36 @@ const TableView = ({ items, onDelete }: { items: IFoodItem[], onDelete: (id: num
 
     const tableInstance = useTable({columns, data: items});
 
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        rows,
-        prepareRow,
-    } = tableInstance;
-
 
 return (
-    <div>
-        <h2> Food Item </h2>
-        <table {...getTableProps()}>
+    <Container>
+        <Table striped bordered hover variant='dark' responsive>
             <thead>
-                {headerGroups.map((headerGroup) => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map((column) => (
+                {tableInstance.headerGroups.map(headerGroups => (
+                    <tr {...headerGroups.getHeaderGroupProps()}>
+                        {headerGroups.headers.map(column => (
                             <th {...column.getHeaderProps()}>{column.render('Header')}</th>
                         ))}
                     </tr>
                 ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-                {rows.map(row => {
-                    prepareRow(row);
-                    return (
-                        <tr {...row.getRowProps()}>
+                </thead>
+                <tbody {...tableInstance.getTableBodyProps()}>
+                    {tableInstance.rows.map(row => {
+                        tableInstance.prepareRow(row);
+                        return(
+                            <tr {...row.getRowProps()}>
+                                {row.cells.map(cell => (
+                                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                ))}
+                            </tr>
+                        )
+                    })}
+                    
+                    </tbody>
 
-                            {row.cells.map(cell => {
-                                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                            })}
-                        </tr>
-                    )
-                })}
-            </tbody>
 
-        </table>
-        <Link to="/">Back to Home </Link>
-    </div>
+        </Table>
+    </Container>
 )
             };
 

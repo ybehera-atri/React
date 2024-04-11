@@ -4,7 +4,8 @@ import './App.css'
 import FormPage from './Form'
 import { Routes, Route, Link } from 'react-router-dom';
 import TableView from './Table'
-//import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Navbar, Nav, Container } from 'react-bootstrap'
 
 interface IFoodItem {
   id: number;
@@ -32,15 +33,23 @@ const App = () => {
 
 
   return (
-    <div>
-      <h1 className='mb-5'> Food Tracker App </h1>
-      <Link to='/add'>Add Food Item</Link> || <Link to='/table'> View Table</Link>
+    <>
+    <Navbar bg ="light" expand="lg" className="mb-4">
+      <Container>
+        <Navbar.Brand href="/">Food Tracker</Navbar.Brand> 
+        <Nav className='me-auto'>
+          <Nav.Link as={Link} to="/add">Add Food Item</Nav.Link>
+          <Nav.Link as={Link} to="/table">View Table</Nav.Link>
+      
+      </Nav>
+      </Container>
+      </Navbar>
       <Routes>
         <Route path='/add' element={<FormPage onAdd={addFoodItem} onEdit={editFoodItem}  />} />
         <Route path='/edit/:id' element={<FormPage onAdd={addFoodItem} onEdit={editFoodItem}  />} />
         <Route path='/table' element={<TableView items={foodItems} onDelete={deleteFoodItem} />} />
       </Routes>
-    </div>
+    </>
   );
 
 };

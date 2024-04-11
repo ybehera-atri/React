@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+
+
 
 interface IFormInput {
     itemName:string;
@@ -33,23 +36,25 @@ const FormPage = ({ onAdd, onEdit }: { onAdd: (itemName: string, fav: string) =>
 
   
     return (
-     <div>
+     <Container className='mt-5'>
+        <Row>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <label>
+            <Form.Group className='mb-3'>
+            <Form.Label>
                 Food Item:
-                <input {...register('itemName', { required: true })} /> 
-            </label>
-            <br></br>
-            <br></br>
-            <label>
-                Add to Favorites
-                <input type="radio" value="Yes" {...register("fav")} /> 
-            </label>
-            <br></br>
-            <br></br>
-            <button type = "submit">Submit</button>
+                <Form.Control type="text" {...register('itemName', { required: true })} placeholder='Enter food item' /> 
+            </Form.Label>
+            </Form.Group>
+
+            <Form.Group className='mb-3'>
+            <Form.Label>
+                <Form.Check type="radio" label="Add to Favorites" value="Yes" {...register("fav")}/>
+                </Form.Label>
+            </Form.Group>
+            <Button variant="primary" type = "submit">Submit</Button>
         </form>
-     </div>
+        </Row>
+     </Container>
     )
   };
 
