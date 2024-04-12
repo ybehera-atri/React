@@ -9,5 +9,14 @@ describe("template spec", () => {
       cy.get("Button").contains("Delete").click();
     });
     cy.visit("/table");
+    cy.contains("Add Food Item").click();
+    cy.get("#food_item").type("Pizza");
+    cy.get("#maybe-radio").click();
+    cy.get("#notsure-check").click();
+    cy.contains("Submit").click();
+    cy.visit("/table");
+    cy.contains("Add Food Item").click();
+    cy.get("#food_item").type("Candy");
+    cy.contains("Submit").click();
   });
 });

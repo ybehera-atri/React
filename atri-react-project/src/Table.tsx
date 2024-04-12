@@ -9,10 +9,7 @@ interface IFoodItem {
   id: number;
   name: string;
   fav: string;
-}
-
-interface TableViewProps {
-  items: IFoodItem[];
+  isVegan: string;
 }
 
 const TableView = ({
@@ -53,6 +50,10 @@ const TableView = ({
       {
         Header: "Favorite",
         accessor: "fav",
+      },
+      {
+        Header: "Vegan",
+        accessor: "isVegan",
       },
       {
         Header: "Actions",

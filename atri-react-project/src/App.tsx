@@ -11,23 +11,30 @@ interface IFoodItem {
   id: number;
   name: string;
   fav: string;
+  isVegan: string;
 }
 
 const App = () => {
   const [foodItems, setFoodItems] = useState<IFoodItem[]>([]);
 
-  const addFoodItem = (itemName: string, fav: string) => {
+  const addFoodItem = (itemName: string, fav: string, isVegan: string) => {
     const newItem: IFoodItem = {
       id: foodItems.length + 1,
       name: itemName,
       fav,
+      isVegan,
     };
     setFoodItems([...foodItems, newItem]);
   };
 
-  const editFoodItem = (id: number, newName: string, fav: string) => {
+  const editFoodItem = (
+    id: number,
+    newName: string,
+    fav: string,
+    isVegan: string
+  ) => {
     const updatedItems = foodItems.map((item) =>
-      item.id === id ? { ...item, name: newName, fav } : item
+      item.id === id ? { ...item, name: newName, fav, isVegan } : item
     );
     setFoodItems(updatedItems);
   };
