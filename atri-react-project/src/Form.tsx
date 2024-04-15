@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Form, Button, Container, Row } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 import { useEffect } from "react";
+import './styles.css'
 
 interface IFormInput {
   itemName: string;
@@ -44,12 +45,14 @@ const FormPage = ({
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-0 pt-4">
       <Row>
+        <Col md={6} className="offset-md-3">
+          <Card className="bg-light text-dark">
         <form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group className="mb-3">
             <Form.Label>
-              Food Item:
+              Food Item: <br></br> <br></br>
               <Form.Control
                 type="text"
                 id="food_item"
@@ -59,10 +62,12 @@ const FormPage = ({
             </Form.Label>
           </Form.Group>
 
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-4">
             Is This Food a Favorite?
+            
             <Form.Label>
               <Form.Check
+                className="custom-form-check"
                 id="yes-radio"
                 type="radio"
                 label="Yes"
@@ -72,6 +77,7 @@ const FormPage = ({
             </Form.Label>
             <Form.Label>
               <Form.Check
+                className="custom-form-check"
                 id="no-radio"
                 type="radio"
                 label="No"
@@ -81,6 +87,7 @@ const FormPage = ({
             </Form.Label>
             <Form.Label>
               <Form.Check
+                className="custom-form-check"
                 id="maybe-radio"
                 type="radio"
                 label="Maybe"
@@ -90,31 +97,24 @@ const FormPage = ({
             </Form.Label>
           </Form.Group>
           <Form.Group className="mb-3">
-            Is This Vegan?
+            What type? <br></br> <br></br>
             <Form.Label>
               <Form.Check
-                id="yes-check"
+                className="custom-form-check"
+                id="gluten"
                 type="checkbox"
-                label="Yes"
-                value="Yes"
+                label="Gluten Free"
+                value="No Gluten  "
                 {...register("isVegan")}
               />
             </Form.Label>
             <Form.Label>
               <Form.Check
-                id="no-check"
+                className="custom-form-check"
+                id="vegan"
                 type="checkbox"
-                label="No"
-                value="No"
-                {...register("isVegan")}
-              />
-            </Form.Label>
-            <Form.Label>
-              <Form.Check
-                id="notsure-check"
-                type="checkbox"
-                label="Not sure"
-                value="Not sure"
+                label="Vegan"
+                value="Vegan "
                 {...register("isVegan")}
               />
             </Form.Label>
@@ -123,6 +123,8 @@ const FormPage = ({
             Submit
           </Button>
         </form>
+        </Card>
+        </Col>
       </Row>
     </Container>
   );

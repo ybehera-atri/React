@@ -52,7 +52,7 @@ const TableView = ({
         accessor: "fav",
       },
       {
-        Header: "Vegan",
+        Header: "Type",
         accessor: "isVegan",
       },
       {

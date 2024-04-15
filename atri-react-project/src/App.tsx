@@ -46,17 +46,20 @@ const App = () => {
 
   return (
     <>
-      <Navbar bg="light" expand="lg" className="mb-4">
-        <Container>
+      <Navbar bg="dark" variant="dark" expand="lg" className="mb-0">
+        <Container fluid>
           <Navbar.Brand href="/">Food Tracker</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/add">
-              Add Food Item
-            </Nav.Link>
-            <Nav.Link as={Link} to="/table">
-              View Table
-            </Nav.Link>
-          </Nav>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={Link} to="/add">
+                Add Food Item
+              </Nav.Link>
+              <Nav.Link as={Link} to="/table">
+                View Table
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
       <Routes>
